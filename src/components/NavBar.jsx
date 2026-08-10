@@ -38,6 +38,22 @@ export default function Navbar() {
           .slice(0, 8)
       : [];
 
+  // ================= MOBILE SEARCH =================
+
+  const mobileSearchResults =
+    searchText.trim()
+      ? products
+          .filter((product) => {
+            const search = searchText.toLowerCase();
+
+            return (
+              product.name?.toLowerCase().includes(search) ||
+              product.mlfb?.toLowerCase().includes(search)
+            );
+          })
+          .slice(0, 8)
+      : [];
+
   return (
     <>
       {/* ================= TOP BAR ================= */}
@@ -98,34 +114,78 @@ export default function Navbar() {
 
         <div className="bg-white shadow-[0_15px_45px_rgba(0,0,0,.08)] rounded-b-[28px]">
 
-          <div className="max-w-[1380px] mx-auto px-8">
+          <div className="max-w-[1380px] mx-auto px-4 sm:px-6 xl:px-8">
 
             <div
               className="
-              grid
-              grid-cols-[380px_1fr_280px]
-              items-center
-              h-[96px]
+                grid
+                grid-cols-1
+                xl:grid-cols-[380px_1fr_280px]
+                items-center
+                min-h-[82px]
+                xl:h-[96px]
               "
             >
 
               {/* ================= LOGO ================= */}
 
-              <div className="h-[96px] overflow-hidden flex items-center gap-7">
+              <div
+                className="
+                  h-[82px]
+                  xl:h-[96px]
+                  overflow-hidden
+                  flex
+                  items-center
+                  gap-4
+                  xl:gap-7
+                "
+              >
 
                 <img
                   src={logo}
                   alt="Logo"
-                  className="h-[140px] w-[120px] object-contain -translate-y-1"
+                  className="
+                    h-[105px]
+                    w-[90px]
+                    sm:h-[120px]
+                    sm:w-[105px]
+                    xl:h-[140px]
+                    xl:w-[120px]
+                    object-contain
+                    -translate-y-1
+                  "
                 />
 
-                <div className="-ml-6">
+                <div className="xl:-ml-6 min-w-0">
 
-                  <h2 className="text-[22px] font-black leading-none text-[#07192E]">
+                  <h2
+                    className="
+                      text-[18px]
+                      sm:text-[20px]
+                      xl:text-[22px]
+                      font-black
+                      leading-none
+                      text-[#07192E]
+                      whitespace-nowrap
+                    "
+                  >
                     VS ENTERPRISES
                   </h2>
 
-                  <p className="mt-2 text-[11px] uppercase tracking-[1.5px] text-gray-500 whitespace-nowrap">
+                  <p
+                    className="
+                      mt-1
+                      xl:mt-2
+                      text-[8px]
+                      sm:text-[9px]
+                      xl:text-[11px]
+                      uppercase
+                      tracking-[1.2px]
+                      xl:tracking-[1.5px]
+                      text-gray-500
+                      whitespace-nowrap
+                    "
+                  >
                     Industrial Automation Solutions
                   </p>
 
@@ -138,11 +198,11 @@ export default function Navbar() {
 
               <nav
                 className="
-                hidden
-                xl:flex
-                justify-center
-                items-center
-                gap-10
+                  hidden
+                  xl:flex
+                  justify-center
+                  items-center
+                  gap-10
                 "
               >
 
@@ -186,17 +246,39 @@ export default function Navbar() {
                   onMouseLeave={() => setProductOpen(false)}
                 >
 
-                  <button className="flex items-center gap-2 font-semibold hover:text-[#009999]">
-
+                  <button
+                    className="
+                      flex
+                      items-center
+                      gap-2
+                      font-semibold
+                      hover:text-[#009999]
+                    "
+                  >
                     Products
 
                     <FaChevronDown className="text-xs" />
-
                   </button>
 
 
                   {productOpen && (
-                    <div className="absolute top-full left-0 -mt-1 w-[340px] bg-white rounded-2xl border border-gray-100 shadow-[0_18px_45px_rgba(0,0,0,.12)] overflow-hidden z-50">
+
+                    <div
+                      className="
+                        absolute
+                        top-full
+                        left-0
+                        -mt-1
+                        w-[340px]
+                        bg-white
+                        rounded-2xl
+                        border
+                        border-gray-100
+                        shadow-[0_18px_45px_rgba(0,0,0,.12)]
+                        overflow-hidden
+                        z-50
+                      "
+                    >
 
                       {[
                         "SIMATIC S7-1200 PLC",
@@ -210,7 +292,16 @@ export default function Navbar() {
                         <a
                           key={item}
                           href="/products"
-                          className="block px-8 py-4 text-[15px] text-[#07192E] hover:bg-[#F5FCFC] hover:text-[#009999] transition"
+                          className="
+                            block
+                            px-8
+                            py-4
+                            text-[15px]
+                            text-[#07192E]
+                            hover:bg-[#F5FCFC]
+                            hover:text-[#009999]
+                            transition
+                          "
                         >
                           {item}
                         </a>
@@ -218,6 +309,7 @@ export default function Navbar() {
                       ))}
 
                     </div>
+
                   )}
 
                 </div>
@@ -255,11 +347,11 @@ export default function Navbar() {
               </nav>
 
 
-              {/* ================= RIGHT ACTIONS ================= */}
+              {/* ================= DESKTOP RIGHT ACTIONS ================= */}
 
               <div className="hidden xl:flex items-center justify-end gap-6 pr-2">
 
-                {/* ================= SEARCH ================= */}
+                {/* SEARCH */}
 
                 <div className="relative">
 
@@ -268,13 +360,19 @@ export default function Navbar() {
                       setSearchOpen(!searchOpen);
                       setSearchText("");
                     }}
-                    className="w-[52px] h-[52px]
-                    rounded-full
-                    border border-gray-200
-                    flex items-center justify-center
-                    hover:border-[#009999]
-                    hover:text-[#009999]
-                    transition"
+                    className="
+                      w-[52px]
+                      h-[52px]
+                      rounded-full
+                      border
+                      border-gray-200
+                      flex
+                      items-center
+                      justify-center
+                      hover:border-[#009999]
+                      hover:text-[#009999]
+                      transition
+                    "
                   >
                     <FaSearch />
                   </button>
@@ -283,18 +381,20 @@ export default function Navbar() {
                   {/* SEARCH BOX */}
 
                   {searchOpen && (
+
                     <div
                       className="
-                      absolute
-                      right-0
-                      top-[62px]
-                      w-[400px]
-                      bg-white
-                      rounded-2xl
-                      shadow-2xl
-                      border border-gray-100
-                      p-4
-                      z-[100]
+                        absolute
+                        right-0
+                        top-[62px]
+                        w-[400px]
+                        bg-white
+                        rounded-2xl
+                        shadow-2xl
+                        border
+                        border-gray-100
+                        p-4
+                        z-[100]
                       "
                     >
 
@@ -307,19 +407,17 @@ export default function Navbar() {
                         }
                         placeholder="Search products or MLFB..."
                         className="
-                        w-full
-                        h-12
-                        border
-                        border-gray-200
-                        rounded-xl
-                        px-4
-                        outline-none
-                        focus:border-[#009999]
+                          w-full
+                          h-12
+                          border
+                          border-gray-200
+                          rounded-xl
+                          px-4
+                          outline-none
+                          focus:border-[#009999]
                         "
                       />
 
-
-                      {/* SEARCH RESULTS */}
 
                       {searchText.trim() !== "" && (
 
@@ -341,14 +439,14 @@ export default function Navbar() {
                                   setSearchText("");
                                 }}
                                 className="
-                                block
-                                px-4
-                                py-3
-                                rounded-xl
-                                hover:bg-gray-50
-                                border-b
-                                border-gray-100
-                                last:border-0
+                                  block
+                                  px-4
+                                  py-3
+                                  rounded-xl
+                                  hover:bg-gray-50
+                                  border-b
+                                  border-gray-100
+                                  last:border-0
                                 "
                               >
 
@@ -379,6 +477,7 @@ export default function Navbar() {
                       )}
 
                     </div>
+
                   )}
 
                 </div>
@@ -388,21 +487,23 @@ export default function Navbar() {
 
                 <Link
                   to="/get-quote"
-                  className="h-[54px]
-                  px-8
-                  rounded-2xl
-                  bg-[#009999]
-                  hover:bg-[#008888]
-                  text-white
-                  font-semibold
-                  flex items-center gap-3
-                  transition"
+                  className="
+                    h-[54px]
+                    px-8
+                    rounded-2xl
+                    bg-[#009999]
+                    hover:bg-[#008888]
+                    text-white
+                    font-semibold
+                    flex
+                    items-center
+                    gap-3
+                    transition
+                  "
                 >
-
                   Get Quote
 
                   <FaArrowRight className="text-sm" />
-
                 </Link>
 
               </div>
@@ -412,7 +513,17 @@ export default function Navbar() {
 
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="xl:hidden justify-self-end text-[30px] text-[#07192E]"
+                className="
+                  xl:hidden
+                  absolute
+                  right-5
+                  top-[25px]
+                  text-[27px]
+                  sm:text-[30px]
+                  text-[#07192E]
+                  z-50
+                "
+                aria-label="Toggle menu"
               >
                 {mobileOpen ? <FaTimes /> : <FaBars />}
               </button>
@@ -428,25 +539,53 @@ export default function Navbar() {
 
         {mobileOpen && (
 
-          <div className="xl:hidden bg-white border-t border-gray-100 shadow-2xl">
+          <div
+            className="
+              xl:hidden
+              bg-white
+              border-t
+              border-gray-100
+              shadow-2xl
+            "
+          >
 
-            <div className="px-6 py-7">
+            <div className="px-5 sm:px-6 py-6 sm:py-7">
 
-              <div className="flex items-center gap-4 mb-8">
+
+              {/* MOBILE BRAND */}
+
+              <div className="flex items-center gap-3 mb-6">
 
                 <img
                   src={logo}
                   alt="VS Enterprises"
-                  className="h-14 w-auto"
+                  className="h-14 sm:h-16 w-auto object-contain"
                 />
 
-                <div>
+                <div className="min-w-0">
 
-                  <h2 className="text-xl font-black text-[#07192E]">
+                  <h2
+                    className="
+                      text-lg
+                      sm:text-xl
+                      font-black
+                      text-[#07192E]
+                      whitespace-nowrap
+                    "
+                  >
                     VS ENTERPRISES
                   </h2>
 
-                  <p className="text-[10px] uppercase tracking-[2px] text-gray-500">
+                  <p
+                    className="
+                      text-[8px]
+                      sm:text-[10px]
+                      uppercase
+                      tracking-[1.5px]
+                      text-gray-500
+                      whitespace-nowrap
+                    "
+                  >
                     Industrial Automation Solutions
                   </p>
 
@@ -454,6 +593,8 @@ export default function Navbar() {
 
               </div>
 
+
+              {/* SIEMENS */}
 
               <div className="flex justify-center mb-6">
 
@@ -466,63 +607,253 @@ export default function Navbar() {
               </div>
 
 
+              {/* ================= MOBILE SEARCH ================= */}
+
+              <div className="mb-5">
+
+                <button
+                  onClick={() => {
+                    setSearchOpen(!searchOpen);
+                    setSearchText("");
+                  }}
+                  className="
+                    w-full
+                    h-12
+                    rounded-xl
+                    border
+                    border-gray-200
+                    flex
+                    items-center
+                    justify-center
+                    gap-3
+                    text-[#07192E]
+                    hover:border-[#009999]
+                    hover:text-[#009999]
+                    transition
+                  "
+                >
+                  <FaSearch />
+
+                  <span className="font-semibold">
+                    Search Products
+                  </span>
+                </button>
+
+
+                {searchOpen && (
+
+                  <div className="mt-3">
+
+                    <input
+                      autoFocus
+                      type="text"
+                      value={searchText}
+                      onChange={(e) =>
+                        setSearchText(e.target.value)
+                      }
+                      placeholder="Search products or MLFB..."
+                      className="
+                        w-full
+                        h-12
+                        border
+                        border-gray-200
+                        rounded-xl
+                        px-4
+                        outline-none
+                        focus:border-[#009999]
+                      "
+                    />
+
+
+                    {searchText.trim() !== "" && (
+
+                      <div
+                        className="
+                          mt-2
+                          max-h-[280px]
+                          overflow-y-auto
+                          rounded-xl
+                          border
+                          border-gray-100
+                        "
+                      >
+
+                        {mobileSearchResults.length > 0 ? (
+
+                          mobileSearchResults.map((product, index) => (
+
+                            <a
+                              key={`${product.mlfb}-${index}`}
+                              href={`https://www.google.com/search?q=${encodeURIComponent(
+                                `${product.name} ${product.mlfb || ""} Siemens`
+                              )}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => {
+                                setSearchOpen(false);
+                                setSearchText("");
+                                setMobileOpen(false);
+                              }}
+                              className="
+                                block
+                                px-4
+                                py-3
+                                border-b
+                                border-gray-100
+                                last:border-0
+                                hover:bg-gray-50
+                              "
+                            >
+
+                              <p className="text-sm font-semibold text-[#07192E]">
+                                {product.name}
+                              </p>
+
+                              {product.mlfb && (
+                                <p className="text-xs text-gray-500 mt-1">
+                                  MLFB: {product.mlfb}
+                                </p>
+                              )}
+
+                            </a>
+
+                          ))
+
+                        ) : (
+
+                          <p className="text-center text-sm text-gray-500 py-5">
+                            No products found
+                          </p>
+
+                        )}
+
+                      </div>
+
+                    )}
+
+                  </div>
+
+                )}
+
+              </div>
+
+
+              {/* ================= MOBILE NAV ================= */}
+
               <nav className="flex flex-col">
 
-                <a
-                  href="/"
-                  className="py-4 border-b border-gray-100 font-semibold"
+                <Link
+                  to="/home"
+                  onClick={() => setMobileOpen(false)}
+                  className="
+                    py-4
+                    border-b
+                    border-gray-100
+                    font-semibold
+                    text-[#009999]
+                  "
                 >
                   Home
-                </a>
+                </Link>
 
-                <a
-                  href="/about"
-                  className="py-4 border-b border-gray-100"
+
+                <Link
+                  to="/about-us"
+                  onClick={() => setMobileOpen(false)}
+                  className="
+                    py-4
+                    border-b
+                    border-gray-100
+                    font-semibold
+                  "
                 >
                   About
-                </a>
+                </Link>
 
-                <a
-                  href="/products"
-                  className="py-4 border-b border-gray-100"
+
+                <Link
+                  to="/products"
+                  onClick={() => setMobileOpen(false)}
+                  className="
+                    py-4
+                    border-b
+                    border-gray-100
+                    font-semibold
+                  "
                 >
                   Products
-                </a>
+                </Link>
 
 
-                <a
-                  href="/contact"
-                  className="py-4 border-b border-gray-100"
+                <Link
+                  to="/solutions"
+                  onClick={() => setMobileOpen(false)}
+                  className="
+                    py-4
+                    border-b
+                    border-gray-100
+                    font-semibold
+                  "
+                >
+                  Solutions
+                </Link>
+
+
+                <Link
+                  to="/career"
+                  onClick={() => setMobileOpen(false)}
+                  className="
+                    py-4
+                    border-b
+                    border-gray-100
+                    font-semibold
+                  "
+                >
+                  Career
+                </Link>
+
+
+                <Link
+                  to="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="
+                    py-4
+                    border-b
+                    border-gray-100
+                    font-semibold
+                  "
                 >
                   Contact
-                </a>
+                </Link>
 
               </nav>
 
 
-              <button
+              {/* ================= MOBILE GET QUOTE ================= */}
+
+              <Link
+                to="/get-quote"
+                onClick={() => setMobileOpen(false)}
                 className="
-                mt-8
-                w-full
-                h-14
-                rounded-xl
-                bg-[#009999]
-                hover:bg-[#008585]
-                text-white
-                font-semibold
-                flex
-                items-center
-                justify-center
-                gap-3
-                transition
+                  mt-7
+                  w-full
+                  h-14
+                  rounded-xl
+                  bg-[#009999]
+                  hover:bg-[#008585]
+                  text-white
+                  font-semibold
+                  flex
+                  items-center
+                  justify-center
+                  gap-3
+                  transition
                 "
               >
-
                 Get Quote
 
                 <FaArrowRight />
-
-              </button>
+              </Link>
 
             </div>
 
@@ -531,7 +862,6 @@ export default function Navbar() {
         )}
 
       </header>
-
     </>
   );
 }
