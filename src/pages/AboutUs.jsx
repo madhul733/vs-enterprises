@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import hero from "../assets/logo.jpg";
 import WhoWeAre from "../pages/WhoWeAre";
 
 import proprietor from "../assets/mma.png";

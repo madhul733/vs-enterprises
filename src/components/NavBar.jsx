@@ -18,7 +18,6 @@ import siemensLogo from "../assets/siemens logo.png";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
-  const [solutionOpen, setSolutionOpen] = useState(false);
 
   // ================= SEARCH =================
 
