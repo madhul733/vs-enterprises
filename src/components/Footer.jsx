@@ -88,7 +88,7 @@ export default function Footer() {
 
               <li>
                 <Link
-                  to="/about"
+                  to="/about-us"
                   className="text-gray-400 hover:text-cyan-400 transition"
                 >
                   About Us
@@ -196,7 +196,7 @@ export default function Footer() {
                   href="mailto:SaurabhSharma825@yahoo.com"
                   className="block mt-2 text-gray-400 hover:text-cyan-400 transition"
                 >
-               SaurabhSharma825@yahoo.com
+               saurabh_sharma825@yahoo.com
                 </a>
 
               </div>

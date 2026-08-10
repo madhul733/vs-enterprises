@@ -81,7 +81,7 @@ export default function Navbar() {
               className="flex items-center gap-2 text-[15px] hover:text-cyan-300 transition"
             >
               <FaEnvelope className="text-[13px]" />
-              Saurabh_sharma825@yahoo.com
+              saurabh_sharma825@yahoo.com
             </a>
 
           </div>
@@ -211,18 +211,7 @@ export default function Navbar() {
                 <Link
                   to="/home"
                   className="
-                    relative
-                    text-[17px]
-                    font-semibold
-                    text-[#009999]
-                    after:absolute
-                    after:left-0
-                    after:-bottom-[12px]
-                    after:w-full
-                    after:h-[3px]
-                    after:bg-[#009999]
-                    after:rounded-full
-                  "
+                   font-semibold hover:text-[#009999] transition"
                 >
                   Home
                 </Link>

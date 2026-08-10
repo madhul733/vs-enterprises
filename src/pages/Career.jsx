@@ -8,6 +8,7 @@ import {
   FaAward,
   FaCheckCircle,
   FaBriefcase,
+  FaPlus,
 } from "react-icons/fa";
 
 const jobs = [
@@ -88,6 +89,9 @@ export default function Career() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+
+  // FAQ accordion state
+  const [openIndex, setOpenIndex] = useState(null);
 
   // ==========================================
   // HANDLE INPUT
@@ -351,6 +355,7 @@ export default function Career() {
               <div className="grid sm:grid-cols-2 gap-7 mt-10">
 
                 <div className="flex gap-4">
+
                   <FaChartLine className="text-cyan-600 text-2xl mt-1 flex-shrink-0" />
 
                   <div>
@@ -362,10 +367,12 @@ export default function Career() {
                       Build a long-term professional career.
                     </p>
                   </div>
+
                 </div>
 
 
                 <div className="flex gap-4">
+
                   <FaGraduationCap className="text-cyan-600 text-2xl mt-1 flex-shrink-0" />
 
                   <div>
@@ -377,10 +384,12 @@ export default function Career() {
                       Gain practical knowledge and exposure.
                     </p>
                   </div>
+
                 </div>
 
 
                 <div className="flex gap-4">
+
                   <FaUsers className="text-cyan-600 text-2xl mt-1 flex-shrink-0" />
 
                   <div>
@@ -392,10 +401,12 @@ export default function Career() {
                       Work with experienced professionals.
                     </p>
                   </div>
+
                 </div>
 
 
                 <div className="flex gap-4">
+
                   <FaAward className="text-cyan-600 text-2xl mt-1 flex-shrink-0" />
 
                   <div>
@@ -407,6 +418,7 @@ export default function Career() {
                       Your contribution is valued and recognized.
                     </p>
                   </div>
+
                 </div>
 
               </div>
@@ -851,9 +863,11 @@ export default function Career() {
           FAQ
       ===================================================== */}
 
-      <section className="py-24 lg:py-28 bg-white">
+      <section className="py-16 md:py-20">
 
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8">
+
+          {/* HEADING */}
 
           <div className="text-center">
 
@@ -861,7 +875,7 @@ export default function Career() {
               FAQ
             </span>
 
-            <h2 className="mt-5 text-4xl md:text-5xl font-black text-[#07192E]">
+            <h2 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-black text-[#07192E]">
               Frequently Asked
               <br />
               Questions
@@ -870,7 +884,9 @@ export default function Career() {
           </div>
 
 
-          <div className="space-y-5 mt-14">
+          {/* FAQ LIST */}
+
+          <div className="space-y-4 mt-10 md:mt-14">
 
             {faqs.map((item, index) => (
 
@@ -883,16 +899,123 @@ export default function Career() {
                   delay: index * 0.08,
                 }}
                 viewport={{ once: true }}
-                className="rounded-[24px] border border-gray-200 p-7 hover:border-cyan-300 transition"
+                className="
+                  rounded-[20px]
+                  md:rounded-[24px]
+                  border
+                  border-gray-200
+                  overflow-hidden
+                  hover:border-cyan-300
+                  transition
+                "
               >
 
-                <h3 className="text-xl md:text-2xl font-bold text-[#07192E]">
-                  {item.q}
-                </h3>
+                {/* QUESTION */}
 
-                <p className="mt-3 text-gray-600 leading-7">
-                  {item.a}
-                </p>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenIndex(
+                      openIndex === index ? null : index
+                    )
+                  }
+                  className="
+                    w-full
+                    flex
+                    items-center
+                    justify-between
+                    gap-5
+                    text-left
+                    px-5
+                    py-5
+                    md:px-7
+                    md:py-6
+                    bg-white
+                  "
+                >
+
+                  <h3
+                    className="
+                      text-base
+                      sm:text-lg
+                      md:text-xl
+                      font-bold
+                      text-[#07192E]
+                      leading-6
+                    "
+                  >
+                    {item.q}
+                  </h3>
+
+
+                  {/* PLUS ICON */}
+
+                  <span
+                    className="
+                      flex-shrink-0
+                      w-9
+                      h-9
+                      md:w-10
+                      md:h-10
+                      rounded-full
+                      bg-cyan-50
+                      text-cyan-600
+                      flex
+                      items-center
+                      justify-center
+                      transition-transform
+                      duration-300
+                    "
+                    style={{
+                      transform:
+                        openIndex === index
+                          ? "rotate(45deg)"
+                          : "rotate(0deg)",
+                    }}
+                  >
+                    <FaPlus className="text-sm" />
+                  </span>
+
+                </button>
+
+
+                {/* ANSWER */}
+
+                <div
+                  className={`
+                    grid
+                    transition-all
+                    duration-300
+                    ease-in-out
+                    ${
+                      openIndex === index
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }
+                  `}
+                >
+
+                  <div className="overflow-hidden">
+
+                    <p
+                      className="
+                        px-5
+                        pb-5
+                        md:px-7
+                        md:pb-6
+                        text-sm
+                        md:text-base
+                        text-gray-600
+                        leading-6
+                        md:leading-7
+                      "
+                    >
+                      {item.a}
+                    </p>
+
+                  </div>
+
+                </div>
 
               </motion.div>
 
@@ -901,7 +1024,9 @@ export default function Career() {
           </div>
 
         </div>
+
       </section>
+
     </>
   );
 }
