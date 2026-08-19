@@ -48,14 +48,14 @@ export default function Footer() {
               </a>
 
               <a
-                href="/"
+                href="https://www.instagram.com/madhul__56?igsh=MXBsZHhiM3BhcmJ3dA%3D%3D&utm_source=qr"
                 className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center hover:bg-cyan-600 hover:border-cyan-600 transition"
               >
                 <FaInstagram />
               </a>
 
               <a
-                href="/"
+                href="https://www.linkedin.com/in/madhul-sharma-6ba19a3ab?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
                 className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center hover:bg-cyan-600 hover:border-cyan-600 transition"
               >
                 <FaLinkedinIn />
