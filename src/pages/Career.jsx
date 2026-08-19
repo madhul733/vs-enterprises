@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import hero from "../assets/home.png";
 import {
   FaArrowRight,
   FaChartLine,
@@ -186,12 +187,34 @@ export default function Career() {
 
   return (
     <>
+    
+
       {/* =====================================================
           HERO
       ===================================================== */}
 
-      <section className="relative min-h-[75vh] flex items-center overflow-hidden bg-[#07192E]">
-
+<section
+  className="
+    relative
+    min-h-[72vh]
+    overflow-hidden
+    flex
+    items-center
+    bg-cover
+    bg-center
+  "
+  style={{
+    backgroundImage: `url(${hero})`,
+  }}
+>
+  <div className="
+  absolute
+  inset-0
+  bg-gradient-to-r
+  from-[#07192E]/90
+  via-[#07192E]/70
+  to-[#07192E]/40
+"></div>
         <div className="absolute -top-40 -right-40 w-[550px] h-[550px] rounded-full border border-cyan-400/10"></div>
 
         <div className="absolute top-20 right-20 w-[300px] h-[300px] rounded-full border border-cyan-400/10"></div>
