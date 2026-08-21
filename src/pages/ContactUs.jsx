@@ -88,7 +88,10 @@ export default function ContactUs() {
   };
 
   return (
-    <section className="py-24 bg-[#F8FBFD]">
+    <section
+      className="py-24 bg-[#F8FBFD]"
+      aria-label="Contact VS Enterprises for industrial automation solutions"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
         {/* Heading */}
@@ -99,17 +102,18 @@ export default function ContactUs() {
             Contact Us
           </span>
 
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mt-4">
+          <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mt-4">
             Let's Discuss Your
             <span className="text-cyan-600">
               {" "}Automation Needs
             </span>
-          </h2>
+          </h1>
 
           <p className="text-gray-600 mt-6 leading-8">
-            Whether you're looking for Siemens automation products,
-            technical guidance, or complete industrial automation
-            solutions, our team is here to help.
+            Contact VS Enterprises in Ludhiana, Punjab for Siemens and
+            Delta automation products, PLCs, HMI panels, AC drives,
+            servo systems, technical guidance, and complete industrial
+            automation solutions.
           </p>
 
         </div>
@@ -135,9 +139,9 @@ export default function ContactUs() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-xl">
+                  <h2 className="font-semibold text-xl">
                     Office Address
-                  </h4>
+                  </h2>
 
                   <p className="text-gray-600 mt-2">
                     Ludhiana, Punjab, India
@@ -154,9 +158,9 @@ export default function ContactUs() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-xl">
+                  <h2 className="font-semibold text-xl">
                     Phone
-                  </h4>
+                  </h2>
 
                   <p className="text-gray-600 mt-2">
                     +91 76960 16654
@@ -173,9 +177,9 @@ export default function ContactUs() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-xl">
+                  <h2 className="font-semibold text-xl">
                     Email
-                  </h4>
+                  </h2>
 
                   <p className="text-gray-600 mt-2">
                     SaurabhSharma825@yahoo.com
@@ -192,9 +196,9 @@ export default function ContactUs() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-xl">
+                  <h2 className="font-semibold text-xl">
                     Business Hours
-                  </h4>
+                  </h2>
 
                   <p className="text-gray-600 mt-2">
                     Monday – Saturday
@@ -222,6 +226,7 @@ export default function ContactUs() {
             <form
               onSubmit={handleSubmit}
               className="space-y-6"
+              aria-label="VS Enterprises contact form"
             >
 
               <input
@@ -230,6 +235,8 @@ export default function ContactUs() {
                 value={formData.fullName}
                 onChange={handleChange}
                 placeholder="Full Name"
+                aria-label="Full Name"
+                autoComplete="name"
                 required
                 className="w-full border border-gray-300 rounded-xl px-5 py-4 outline-none focus:border-cyan-600"
               />
@@ -241,6 +248,8 @@ export default function ContactUs() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Email Address"
+                aria-label="Email Address"
+                autoComplete="email"
                 required
                 className="w-full border border-gray-300 rounded-xl px-5 py-4 outline-none focus:border-cyan-600"
               />
@@ -252,6 +261,8 @@ export default function ContactUs() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Phone Number"
+                aria-label="Phone Number"
+                autoComplete="tel"
                 className="w-full border border-gray-300 rounded-xl px-5 py-4 outline-none focus:border-cyan-600"
               />
 
@@ -262,6 +273,7 @@ export default function ContactUs() {
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder="Subject"
+                aria-label="Subject"
                 required
                 className="w-full border border-gray-300 rounded-xl px-5 py-4 outline-none focus:border-cyan-600"
               />
@@ -273,6 +285,7 @@ export default function ContactUs() {
                 onChange={handleChange}
                 rows="6"
                 placeholder="Write your message..."
+                aria-label="Message"
                 required
                 className="w-full border border-gray-300 rounded-xl px-5 py-4 outline-none focus:border-cyan-600"
               ></textarea>
@@ -281,7 +294,10 @@ export default function ContactUs() {
               {/* SUCCESS */}
 
               {success && (
-                <div className="bg-green-50 border border-green-200 text-green-700 rounded-xl px-5 py-4 text-sm">
+                <div
+                  className="bg-green-50 border border-green-200 text-green-700 rounded-xl px-5 py-4 text-sm"
+                  role="status"
+                >
                   {success}
                 </div>
               )}
@@ -290,7 +306,10 @@ export default function ContactUs() {
               {/* ERROR */}
 
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-5 py-4 text-sm">
+                <div
+                  className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-5 py-4 text-sm"
+                  role="alert"
+                >
                   {error}
                 </div>
               )}

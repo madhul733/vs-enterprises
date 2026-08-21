@@ -123,7 +123,10 @@ export default function GetQuote() {
           HERO
       ===================================================== */}
 
-      <section className="relative min-h-[55vh] bg-[#07192E] overflow-hidden flex items-center">
+      <section
+        className="relative min-h-[55vh] bg-[#07192E] overflow-hidden flex items-center"
+        aria-label="Request a quote for industrial automation products and solutions"
+      >
 
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full border border-cyan-400/10"></div>
 
@@ -157,8 +160,9 @@ export default function GetQuote() {
             <p className="mt-7 max-w-2xl text-lg md:text-xl text-slate-300 leading-9">
 
               Tell us what you need and our team will help you
-              identify the right Siemens industrial automation
-              products and solution for your application.
+              identify the right Siemens and Delta industrial automation
+              products and solution for your application in Ludhiana,
+              Punjab and across India.
 
             </p>
 
@@ -172,7 +176,10 @@ export default function GetQuote() {
           QUOTE SECTION
       ===================================================== */}
 
-      <section className="py-24 lg:py-28 bg-[#F8FBFD]">
+      <section
+        className="py-24 lg:py-28 bg-[#F8FBFD]"
+        aria-label="Request an industrial automation product quote"
+      >
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -202,10 +209,9 @@ export default function GetQuote() {
 
               <p className="mt-7 text-slate-300 leading-8">
 
-                Whether you need a single automation product,
-                replacement component or a complete industrial
-                automation solution, share your requirement
-                with us.
+                Whether you need a Siemens or Delta automation product,
+                replacement component or a complete industrial automation
+                solution, share your requirement with us.
 
               </p>
 
@@ -332,6 +338,7 @@ export default function GetQuote() {
               <form
                 onSubmit={handleSubmit}
                 className="space-y-7"
+                aria-label="Industrial automation quote request form"
               >
 
                 {/* NAME + COMPANY */}
@@ -347,6 +354,7 @@ export default function GetQuote() {
                     <input
                       type="text"
                       name="fullName"
+                      autoComplete="name"
                       value={formData.fullName}
                       onChange={handleChange}
                       placeholder="Your full name"
@@ -378,6 +386,7 @@ export default function GetQuote() {
                     <input
                       type="text"
                       name="companyName"
+                      autoComplete="organization"
                       value={formData.companyName}
                       onChange={handleChange}
                       placeholder="Your company"
@@ -414,6 +423,7 @@ export default function GetQuote() {
                     <input
                       type="email"
                       name="email"
+                      autoComplete="email"
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="your@email.com"
@@ -445,6 +455,7 @@ export default function GetQuote() {
                     <input
                       type="tel"
                       name="phone"
+                      autoComplete="tel"
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="+91 XXXXX XXXXX"
@@ -749,7 +760,10 @@ export default function GetQuote() {
           HOW IT WORKS
       ===================================================== */}
 
-      <section className="py-24 bg-white">
+      <section
+        className="py-24 bg-white"
+        aria-label="How the VS Enterprises quotation process works"
+      >
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -834,7 +848,10 @@ export default function GetQuote() {
           FINAL CTA
       ===================================================== */}
 
-      <section className="py-24 bg-[#07192E]">
+      <section
+        className="py-24 bg-[#07192E]"
+        aria-label="Contact VS Enterprises for product assistance"
+      >
 
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
 
@@ -862,7 +879,7 @@ export default function GetQuote() {
 
               Share your machine or application details with
               our team and we'll help you identify the right
-              automation solution.
+              Siemens or Delta industrial automation solution.
 
             </p>
 

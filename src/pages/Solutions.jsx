@@ -139,6 +139,7 @@ export default function Solutions() {
         style={{
           backgroundImage: `url(${hero})`,
         }}
+        aria-label="VS Enterprises industrial automation solutions"
       >
 
         {/* =================================================
@@ -260,7 +261,7 @@ export default function Solutions() {
               "
             >
 
-              Engineering
+              Industrial Automation
 
               <br />
 
@@ -285,10 +286,10 @@ export default function Solutions() {
                 text-slate-300
               "
             >
-              From PLC automation and HMI systems to drives,
-              servo solutions and industrial control panels,
-              VS Enterprises delivers reliable automation
-              solutions for modern industrial applications.
+              From Siemens PLC automation and HMI systems to AC drives,
+              servo solutions and industrial control panels, VS Enterprises
+              delivers reliable industrial automation solutions in Ludhiana,
+              Punjab and across India.
             </p>
 
 
@@ -353,7 +354,10 @@ export default function Solutions() {
           CHALLENGES
       ===================================================== */}
 
-      <section className="py-24 lg:py-28 bg-white">
+      <section
+        className="py-24 lg:py-28 bg-white"
+        aria-label="Industrial automation challenges"
+      >
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -433,9 +437,10 @@ export default function Solutions() {
                 "
               >
                 Modern industrial operations demand better control,
-                greater reliability and improved productivity.
-                The right automation technology can help businesses
-                achieve consistent and efficient operations.
+                greater reliability and improved productivity. The right
+                automation technology, including PLCs, HMIs, drives and
+                control systems, can help businesses achieve consistent
+                and efficient operations.
               </p>
 
             </motion.div>
@@ -529,7 +534,10 @@ export default function Solutions() {
           WHAT WE DELIVER
       ===================================================== */}
 
-      <section className="py-24 lg:py-28 bg-[#07192E]">
+      <section
+        className="py-24 lg:py-28 bg-[#07192E]"
+        aria-label="Industrial automation solutions and services"
+      >
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -588,8 +596,9 @@ export default function Solutions() {
                 "
               >
                 We help businesses select and implement the right
-                industrial automation products and solutions for
-                their specific applications.
+                Siemens and Delta industrial automation products and
+                solutions for their specific applications, with a focus
+                on reliable machine control and efficient operations.
               </p>
 
 
@@ -696,11 +705,14 @@ export default function Solutions() {
           OUR ADVANTAGES
       ===================================================== */}
 
-      <section className="
-        py-24
-        lg:py-28
-        bg-[#F8FBFD]
-      ">
+      <section
+        className="
+          py-24
+          lg:py-28
+          bg-[#F8FBFD]
+        "
+        aria-label="VS Enterprises industrial automation advantages"
+      >
 
         <div className="
           max-w-7xl
@@ -755,7 +767,8 @@ export default function Solutions() {
             >
               We combine product knowledge, technical understanding
               and customer-focused service to deliver dependable
-              industrial automation solutions.
+              industrial automation solutions for businesses in Ludhiana,
+              Punjab and across India.
             </p>
 
           </div>
@@ -864,11 +877,14 @@ export default function Solutions() {
           OUR SOLUTIONS
       ===================================================== */}
 
-      <section className="
-        py-24
-        lg:py-28
-        bg-white
-      ">
+      <section
+        className="
+          py-24
+          lg:py-28
+          bg-white
+        "
+        aria-label="Industrial automation solutions offered by VS Enterprises"
+      >
 
         <div className="
           max-w-7xl
@@ -928,9 +944,11 @@ export default function Solutions() {
                 text-gray-600
               "
             >
-              Explore our core automation solutions designed
-              to help industries improve control, efficiency
-              and operational performance.
+              Explore our core industrial automation solutions,
+              including PLC automation, HMI systems, drive and motion
+              control, industrial control panels and process monitoring,
+              designed to improve control, efficiency and operational
+              performance.
             </p>
 
           </div>
@@ -1101,10 +1119,13 @@ export default function Solutions() {
           CTA
       ===================================================== */}
 
-      <section className="
-        py-24
-        bg-[#07192E]
-      ">
+      <section
+        className="
+          py-24
+          bg-[#07192E]
+        "
+        aria-label="Contact VS Enterprises for industrial automation requirements"
+      >
 
         <div className="
           max-w-6xl
@@ -1212,9 +1233,10 @@ export default function Solutions() {
                   text-cyan-50
                 "
               >
-                Tell us about your application, machine or
-                industrial requirement. Our team can help you
-                identify the right automation products and solution.
+                Tell us about your application, machine or industrial
+                requirement. Our team can help you identify the right
+                Siemens and Delta automation products and solution for
+                your application.
               </p>
 
 

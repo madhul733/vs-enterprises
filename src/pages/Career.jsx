@@ -206,6 +206,7 @@ export default function Career() {
   style={{
     backgroundImage: `url(${hero})`,
   }}
+  aria-label="Careers at VS Enterprises in industrial automation"
 >
   <div className="
   absolute
@@ -249,9 +250,10 @@ export default function Career() {
             </h1>
 
             <p className="mt-8 max-w-2xl text-lg md:text-xl leading-9 text-slate-300">
-              Join our growing team and become part of a company
-              focused on industrial automation, technology,
-              professional growth and customer satisfaction.
+              Join our growing team at VS Enterprises and build your
+              career in industrial automation, technology, sales, marketing
+              and engineering while gaining practical industry exposure
+              and professional growth.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-10">
@@ -283,7 +285,10 @@ export default function Career() {
           WHY JOIN
       ===================================================== */}
 
-      <section className="py-24 lg:py-28 bg-white">
+      <section
+        className="py-24 lg:py-28 bg-white"
+        aria-label="Why join VS Enterprises"
+      >
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -478,8 +483,8 @@ export default function Career() {
             </h2>
 
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Explore opportunities to work with our team
-              and develop your career in industrial automation
+              Explore career opportunities at VS Enterprises in
+              industrial automation, sales, marketing, service engineering
               and business operations.
             </p>
 
@@ -558,7 +563,10 @@ export default function Career() {
           HIRING PROCESS
       ===================================================== */}
 
-      <section className="py-24 lg:py-28 bg-white">
+      <section
+        className="py-24 lg:py-28 bg-white"
+        aria-label="VS Enterprises hiring process"
+      >
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -633,6 +641,7 @@ export default function Career() {
       <section
         id="apply"
         className="py-24 lg:py-28 bg-[#F8FBFD]"
+        aria-label="Apply for a career at VS Enterprises"
       >
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -693,6 +702,7 @@ export default function Career() {
               <form
                 onSubmit={handleSubmit}
                 className="grid md:grid-cols-2 gap-6"
+                aria-label="VS Enterprises career application form"
               >
 
                 <div>
@@ -704,6 +714,7 @@ export default function Career() {
                   <input
                     type="text"
                     name="fullName"
+                    autoComplete="name"
                     value={formData.fullName}
                     onChange={handleChange}
                     placeholder="Enter your name"
@@ -723,6 +734,7 @@ export default function Career() {
                   <input
                     type="email"
                     name="email"
+                    autoComplete="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email"
@@ -742,6 +754,7 @@ export default function Career() {
                   <input
                     type="tel"
                     name="phone"
+                    autoComplete="tel"
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Enter your phone"
@@ -886,7 +899,10 @@ export default function Career() {
           FAQ
       ===================================================== */}
 
-      <section className="py-16 md:py-20">
+      <section
+        className="py-16 md:py-20"
+        aria-label="Frequently asked questions about careers at VS Enterprises"
+      >
 
         <div className="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8">
 

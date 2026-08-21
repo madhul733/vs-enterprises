@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 
 export default function WhoWeAre() {
   return (
-    <section className="bg-white py-24">
+    <section
+      className="bg-white py-24"
+      aria-label="About VS Enterprises and industrial automation solutions"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -30,37 +33,38 @@ export default function WhoWeAre() {
 
             <p className="text-gray-600 text-lg leading-8 mb-6">
               VS Enterprises is a trusted supplier of industrial automation
-              solutions, helping industries improve productivity, efficiency,
-              and operational reliability. Since 2014, we have been delivering
-              high-quality automation products from globally recognized brands
-              such as Siemens and Delta.
+              solutions in Ludhiana, Punjab, helping industries improve
+              productivity, efficiency, and operational reliability. Since
+              2014, we have been delivering high-quality automation products
+              from globally recognized brands such as Siemens and Delta.
             </p>
 
             <p className="text-gray-600 text-lg leading-8">
-              Our expertise includes PLCs, HMIs, AC Drives, Servo Systems,
-              Power Supplies, and complete industrial automation solutions.
-              With a commitment to quality, technical excellence, and customer
-              satisfaction, we strive to build long-term partnerships through
-              dependable products and exceptional service.
+              Our expertise includes Siemens and Delta PLCs, HMIs, AC Drives,
+              Servo Systems, Power Supplies, and complete industrial automation
+              solutions. With a commitment to quality, technical excellence,
+              and customer satisfaction, we strive to build long-term
+              partnerships through dependable products and exceptional service.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-10">
 
-              <Link to="/products"
-            className="h-14 px-8 rounded-xl bg-cyan-500 hover:bg-cyan-600 transition text-white font-semibold flex items-center gap-3">
+              <Link
+                to="/products"
+                className="h-14 px-8 rounded-xl bg-cyan-500 hover:bg-cyan-600 transition text-white font-semibold flex items-center gap-3"
+                aria-label="Explore VS Enterprises industrial automation products"
+              >
+                Explore Products
+                <FaArrowRight aria-hidden="true" />
+              </Link>
 
-              Explore Products
-
-              <FaArrowRight />
-
-            </Link>
-
- <Link
-  to="/contact"
-  className="border border-slate-300 hover:border-cyan-600 hover:text-cyan-600 transition px-7 py-3 rounded-xl font-semibold text-slate-700 inline-flex items-center justify-center"
->
-  Contact Us
-</Link>
+              <Link
+                to="/contact"
+                className="border border-slate-300 hover:border-cyan-600 hover:text-cyan-600 transition px-7 py-3 rounded-xl font-semibold text-slate-700 inline-flex items-center justify-center"
+                aria-label="Contact VS Enterprises"
+              >
+                Contact Us
+              </Link>
 
             </div>
 
@@ -76,7 +80,8 @@ export default function WhoWeAre() {
           >
             <img
               src={companyImg}
-              alt="VS Enterprises"
+              alt="VS Enterprises industrial automation solutions in Ludhiana"
+              loading="lazy"
               className="w-full rounded-3xl shadow-2xl object-cover"
             />
 

@@ -26,7 +26,10 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 overflow-hidden">
+    <section
+      className="py-12 sm:py-16 lg:py-20 overflow-hidden"
+      aria-label="Why choose VS Enterprises for industrial automation"
+    >
 
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
 
@@ -94,7 +97,8 @@ export default function WhyChooseUs() {
             >
               We provide genuine Siemens Industrial Automation
               products backed by engineering expertise, fast
-              delivery and complete after-sales technical support.
+              delivery and complete after-sales technical support
+              for industrial customers across India.
             </p>
 
 
@@ -142,6 +146,7 @@ export default function WhyChooseUs() {
                           mt-2
                           rounded-full
                         "
+                        aria-hidden="true"
                       />
                     )}
 
@@ -213,6 +218,7 @@ export default function WhyChooseUs() {
                 items-end
                 overflow-visible
               "
+              aria-hidden="true"
             >
 
               {/* BACKGROUND GLOW */}
@@ -242,7 +248,8 @@ export default function WhyChooseUs() {
 
               <img
                 src={girl}
-                alt="Why VS Enterprises"
+                alt="VS Enterprises industrial automation products and technical support"
+                loading="lazy"
                 className="
                   relative
                   z-10

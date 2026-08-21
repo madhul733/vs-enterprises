@@ -19,43 +19,64 @@ const products = [
     title: "Siemens PLC",
     category: "Industrial Automation",
     image: plc,
-     link: "https://mall.industry.siemens.com/",
+    alt: "Siemens PLC industrial automation product",
+    description:
+      "Reliable Siemens PLC solutions for industrial control, automation and efficient machine operations.",
+    link: "https://mall.industry.siemens.com/",
   },
   {
     title: "HMI Panels",
     category: "Industrial Automation",
     image: hmi,
-     link: "https://mall.industry.siemens.com/",
+    alt: "Siemens HMI panel for industrial automation",
+    description:
+      "Siemens HMI panels for efficient machine monitoring, visualization and industrial process control.",
+    link: "https://mall.industry.siemens.com/",
   },
   {
     title: "AC Drives",
     category: "Industrial Automation",
     image: drive,
-     link: "https://mall.industry.siemens.com/",
+    alt: "Siemens AC drive for industrial automation",
+    description:
+      "High-performance Siemens AC drives for reliable motor control, speed regulation and industrial applications.",
+    link: "https://mall.industry.siemens.com/",
   },
   {
     title: "PLC Panels",
     category: "Industrial Automation",
     image: panel,
-     link: "https://mall.industry.siemens.com/",
+    alt: "Industrial PLC control panel for automation systems",
+    description:
+      "Industrial PLC panels designed for dependable control, automation and efficient machine operations.",
+    link: "https://mall.industry.siemens.com/",
   },
   {
     title: "V90 Servo",
     category: "Industrial Automation",
     image: servo,
-     link: "https://mall.industry.siemens.com/",
+    alt: "Siemens V90 servo drive for industrial automation",
+    description:
+      "Siemens V90 servo solutions for precise motion control and demanding industrial automation applications.",
+    link: "https://mall.industry.siemens.com/",
   },
   {
     title: "ET200 Modules",
     category: "Industrial Automation",
     image: et200,
-     link: "https://mall.industry.siemens.com/",
+    alt: "Siemens ET200 modules for industrial automation",
+    description:
+      "Siemens ET200 modules for flexible industrial I/O, machine control and automation system integration.",
+    link: "https://mall.industry.siemens.com/",
   },
 ];
 
 export default function ProductsSection() {
   return (
-    <section className="py-24 bg-[#F7FAFC] overflow-hidden">
+    <section
+      className="py-24 bg-[#F7FAFC] overflow-hidden"
+      aria-label="VS Enterprises Industrial Automation Products"
+    >
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -66,27 +87,22 @@ export default function ProductsSection() {
           <div>
 
             <span className="uppercase tracking-[4px] text-cyan-600 font-semibold text-sm">
-
               OUR PRODUCTS
-
             </span>
 
             <h2 className="mt-4 text-4xl md:text-5xl font-black text-[#07192E] leading-tight">
-
-              Industrial Automation
+              Siemens & Delta
               <br />
-              Products
-
+              Industrial Automation Products
             </h2>
 
           </div>
 
           <p className="max-w-xl mt-6 lg:mt-0 text-gray-600 leading-8">
-
-            Explore our complete range of Siemens
-            Industrial Automation products designed
-            for reliability, precision and efficiency.
-
+            Explore our range of industrial automation products and solutions,
+            including Siemens PLCs, HMI panels, AC drives, servo systems,
+            PLC panels and ET200 modules designed for reliability,
+            precision and efficient industrial operations.
           </p>
 
         </div>
@@ -116,135 +132,133 @@ export default function ProductsSection() {
           }}
         >
 
-         {products.map((product, index) => (
+          {products.map((product, index) => (
 
-  <SwiperSlide key={index}>
+            <SwiperSlide key={index}>
 
-    <div className="group cursor-pointer">
+              <div className="group cursor-pointer">
 
-      <div
-        className="
-        relative
-        h-[450px]
-        overflow-hidden
-        rounded-[30px]
-        bg-white
-        border
-        border-slate-200
-        transition-all
-        duration-500
-        hover:-translate-y-3
-        hover:border-cyan-500
-        hover:shadow-[0_25px_60px_rgba(0,0,0,.18)]
-        "
-      >
+                <div
+                  className="
+                    relative
+                    h-[450px]
+                    overflow-hidden
+                    rounded-[30px]
+                    bg-white
+                    border
+                    border-slate-200
+                    transition-all
+                    duration-500
+                    hover:-translate-y-3
+                    hover:border-cyan-500
+                    hover:shadow-[0_25px_60px_rgba(0,0,0,.18)]
+                  "
+                >
 
-        {/* Category Badge */}
+                  {/* Category Badge */}
 
-        <div className="absolute top-5 left-5 z-20">
+                  <div className="absolute top-5 left-5 z-20">
 
-          <span className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-[#07192E] text-xs font-semibold shadow-md">
+                    <span className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-[#07192E] text-xs font-semibold shadow-md">
+                      {product.category}
+                    </span>
 
-            {product.category}
+                  </div>
 
-          </span>
+                  {/* Image */}
 
-        </div>
+                  <div className="w-full h-full overflow-hidden">
 
-        {/* Image */}
+                    <img
+                      src={product.image}
+                      alt={product.alt}
+                      loading="lazy"
+                      className="
+                        w-full
+                        h-full
+                        object-contain
+                        p-10
+                        transition-all
+                        duration-700
+                        group-hover:scale-110
+                      "
+                    />
 
-        <div className="w-full h-full overflow-hidden">
+                  </div>
 
-          <img
-            src={product.image}
-            alt={product.title}
-            className="
-            w-full
-            h-full
-            object-contain
-            p-10
-            transition-all
-            duration-700
-            group-hover:scale-110
-            "
-          />
+                  {/* Hover Overlay */}
 
-        </div>
+                  <div
+                    className="
+                      absolute
+                      inset-0
+                      bg-gradient-to-t
+                      from-[#041324]
+                      via-[#041324]/60
+                      to-transparent
+                      opacity-0
+                      group-hover:opacity-100
+                      transition-all
+                      duration-500
+                    "
+                  >
 
-        {/* Hover Overlay */}
+                    <div className="absolute bottom-8 left-8 right-8">
 
-        <div
-          className="
-          absolute
-          inset-0
-          bg-gradient-to-t
-          from-[#041324]
-          via-[#041324]/60
-          to-transparent
-          opacity-0
-          group-hover:opacity-100
-          transition-all
-          duration-500
-          "
-        >
+                      <h3 className="text-white text-3xl font-bold">
+                        {product.title}
+                      </h3>
 
-          <div className="absolute bottom-8 left-8 right-8">
+                      <p className="mt-4 text-gray-200 leading-7">
+                        {product.description}
+                      </p>
 
-            <h3 className="text-white text-3xl font-bold">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          window.open(
+                            product.link,
+                            "_blank",
+                            "noopener,noreferrer"
+                          )
+                        }
+                        aria-label={`Explore ${product.title}`}
+                        className="
+                          mt-8
+                          flex
+                          items-center
+                          gap-3
+                          text-cyan-600
+                          font-semibold
+                          transition-all
+                          duration-300
+                          hover:gap-5
+                        "
+                      >
+                        Explore Product
+                        <FaArrowRight aria-hidden="true" />
+                      </button>
 
-              {product.title}
+                      <div className="mt-6 w-0 h-[3px] bg-cyan-400 group-hover:w-20 transition-all duration-500"></div>
 
-            </h3>
+                    </div>
 
-            <p className="mt-4 text-gray-200 leading-7">
+                  </div>
 
-              High-performance Siemens industrial
-              automation solution designed for
-              reliability and precision.
+                </div>
 
-            </p>
+              </div>
 
-           <button
-  onClick={() => window.open(product.link, "_blank")}
-  className="
-    mt-8
-    flex
-    items-center
-    gap-3
-    text-cyan-600 
-    font-semibold
-    transition-all
-    duration-300
-    hover:gap-5
-  "
->
-  Explore Product
-  <FaArrowRight />
-</button>
+            </SwiperSlide>
 
-            <div className="mt-6 w-0 h-[3px] bg-cyan-400 group-hover:w-20 transition-all duration-500"></div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </SwiperSlide>
-
-))}
+          ))}
 
         </Swiper>
-               
 
         {/* View All Button */}
-
 
       </div>
 
     </section>
-
   );
 }

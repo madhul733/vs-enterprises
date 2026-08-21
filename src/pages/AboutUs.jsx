@@ -46,7 +46,10 @@ export default function AboutUs() {
           OUR TEAM
       ===================================================== */}
 
-      <section className="py-24 bg-[#F8FBFD]">
+      <section
+        className="py-24 bg-[#F8FBFD]"
+        aria-label="VS Enterprises leadership and company information"
+      >
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -971,7 +974,7 @@ export default function AboutUs() {
 
   <img
     src={office3}
-    alt="VS Enterprises Office"
+    alt="VS Enterprises office exterior in Ludhiana Punjab"
     className="
       w-full
       h-full
