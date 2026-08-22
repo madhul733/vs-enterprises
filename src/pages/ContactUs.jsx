@@ -46,7 +46,7 @@ export default function ContactUs() {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/contact",
+ "https://vs-enterprises-api.onrender.com/api/contact",
         {
           method: "POST",
           headers: {

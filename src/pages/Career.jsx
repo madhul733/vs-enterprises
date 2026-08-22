@@ -142,7 +142,7 @@ export default function Career() {
       }
 
       const response = await fetch(
-        "http://localhost:5001/api/career",
+      "https://vs-enterprises-api.onrender.com/api/career",
         {
           method: "POST",
           body: data,

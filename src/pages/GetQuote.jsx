@@ -68,7 +68,7 @@ export default function GetQuote() {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/quotes",
+    "https://vs-enterprises-api.onrender.com/api/quotes",
         {
           method: "POST",
 
