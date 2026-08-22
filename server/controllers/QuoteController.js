@@ -1,13 +1,25 @@
 const Quote = require("../models/Quote");
-const nodemailer = require("nodemailer");
+
 
 // ==========================================
 // EMAIL CONFIG
 // ==========================================
 
-console.log("EMAIL_USER:", process.env.EMAIL_USER);
-console.log("EMAIL_PASS exists:", !!process.env.EMAIL_PASS);
-console.log("QUOTE_RECEIVER:", process.env.QUOTE_RECEIVER);
+console.log(
+  "RESEND_API_KEY exists:",
+  !!process.env.RESEND_API_KEY
+);
+
+console.log(
+  "RESEND_FROM_EMAIL:",
+  process.env.RESEND_FROM_EMAIL
+);
+
+console.log(
+  "QUOTE_RECEIVER:",
+  process.env.QUOTE_RECEIVER
+);
+
 
 // ==========================================
 // WHATSAPP CONFIG
@@ -25,23 +37,276 @@ console.log(
 
 
 // ==========================================
-// YAHOO SMTP
+// SEND QUOTE EMAIL USING RESEND API
 // ==========================================
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.mail.yahoo.com",
-  port: 587,
-  secure: false,
+const sendQuoteEmail = async ({
+  fullName,
+  companyName,
+  email,
+  phone,
+  product,
+  quantity,
+  requiredBy,
+  requirement,
+}) => {
 
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+  const apiKey =
+    process.env.RESEND_API_KEY;
 
-  tls: {
-    rejectUnauthorized: true,
-  },
-});
+  const receiver =
+    process.env.QUOTE_RECEIVER ||
+    "saurabh_sharma825@yahoo.com";
+
+  const fromEmail =
+    process.env.RESEND_FROM_EMAIL ||
+    "onboarding@resend.dev";
+
+
+  // ======================================
+  // CHECK RESEND CONFIG
+  // ======================================
+
+  if (!apiKey) {
+    throw new Error(
+      "RESEND_API_KEY is missing from environment variables."
+    );
+  }
+
+
+  // ======================================
+  // EMAIL HTML
+  // ======================================
+
+  const html = `
+    <div style="
+      font-family: Arial, sans-serif;
+      max-width: 650px;
+      margin: auto;
+      background: #ffffff;
+    ">
+
+      <div style="
+        background: #07192E;
+        color: white;
+        padding: 25px;
+      ">
+
+        <h2 style="margin: 0;">
+          New Quote Request
+        </h2>
+
+        <p style="
+          margin: 8px 0 0;
+          color: #67e8f9;
+        ">
+          VS Enterprises Website
+        </p>
+
+      </div>
+
+
+      <div style="
+        padding: 25px;
+        border: 1px solid #e5e7eb;
+      ">
+
+        <h3 style="color: #07192E;">
+          Customer Details
+        </h3>
+
+        <p>
+          <strong>Name:</strong>
+          ${fullName}
+        </p>
+
+        <p>
+          <strong>Company:</strong>
+          ${companyName || "Not provided"}
+        </p>
+
+        <p>
+          <strong>Email:</strong>
+          ${email}
+        </p>
+
+        <p>
+          <strong>Phone:</strong>
+          ${phone || "Not provided"}
+        </p>
+
+
+        <hr style="
+          border: 0;
+          border-top: 1px solid #e5e7eb;
+          margin: 25px 0;
+        " />
+
+
+        <h3 style="color: #07192E;">
+          Requirement Details
+        </h3>
+
+        <p>
+          <strong>Product:</strong>
+          ${product}
+        </p>
+
+        <p>
+          <strong>Quantity:</strong>
+          ${quantity || "Not provided"}
+        </p>
+
+        <p>
+          <strong>Required By:</strong>
+          ${requiredBy || "Not specified"}
+        </p>
+
+        <p>
+          <strong>Requirement:</strong>
+        </p>
+
+        <div style="
+          background: #f8fafc;
+          padding: 15px;
+          border: 1px solid #e5e7eb;
+          line-height: 1.6;
+          white-space: pre-line;
+        ">
+          ${requirement}
+        </div>
+
+
+        <p style="
+          margin-top: 25px;
+          color: #64748b;
+          font-size: 13px;
+        ">
+          This enquiry was submitted through the
+          VS Enterprises website.
+        </p>
+
+      </div>
+
+    </div>
+  `;
+
+
+  // ======================================
+  // SEND EMAIL
+  // ======================================
+
+  console.log(
+    "Sending quote email to:",
+    receiver
+  );
+
+
+  const controller =
+    new AbortController();
+
+  const timeout =
+    setTimeout(() => {
+      controller.abort();
+    }, 15000);
+
+
+  try {
+
+    const response =
+      await fetch(
+        "https://api.resend.com/emails",
+        {
+          method: "POST",
+
+          headers: {
+            Authorization:
+              `Bearer ${apiKey}`,
+
+            "Content-Type":
+              "application/json",
+          },
+
+          body: JSON.stringify({
+
+            from:
+              fromEmail,
+
+            to:
+              [receiver],
+
+            reply_to:
+              email,
+
+            subject:
+              `New Quote Request - ${product}`,
+
+            html:
+              html,
+
+          }),
+
+          signal:
+            controller.signal,
+
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    // ====================================
+    // CHECK RESPONSE
+    // ====================================
+
+    if (!response.ok) {
+
+      console.error(
+        "Resend quote email error:",
+        data
+      );
+
+      throw new Error(
+        data?.message ||
+        data?.error ||
+        "Quote email could not be sent."
+      );
+
+    }
+
+
+    console.log(
+      "Quote email sent successfully:",
+      data
+    );
+
+
+    return data;
+
+
+  } catch (error) {
+
+    if (
+      error.name === "AbortError"
+    ) {
+
+      throw new Error(
+        "Email service timed out. Please try again."
+      );
+
+    }
+
+    throw error;
+
+  } finally {
+
+    clearTimeout(timeout);
+
+  }
+
+};
 
 
 // ==========================================
@@ -69,18 +334,26 @@ const sendWhatsAppMessage = async ({
     process.env.WHATSAPP_RECEIVER_NUMBER;
 
 
-  // Check configuration
+  // ======================================
+  // CHECK CONFIG
+  // ======================================
 
   if (
     !phoneNumberId ||
     !accessToken ||
     !receiverNumber
   ) {
+
     throw new Error(
-      "WhatsApp configuration is missing from .env"
+      "WhatsApp configuration is missing from environment variables."
     );
+
   }
 
+
+  // ======================================
+  // WHATSAPP MESSAGE
+  // ======================================
 
   const message = `🔔 New Quote Request - VS Enterprises
 
@@ -97,54 +370,116 @@ Requirement:
 ${requirement}`;
 
 
-  const response = await fetch(
-    `https://graph.facebook.com/v23.0/${phoneNumberId}/messages`,
-    {
-      method: "POST",
+  // ======================================
+  // SEND WHATSAPP
+  // ======================================
 
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({
-        messaging_product: "whatsapp",
-
-        to: receiverNumber,
-
-        type: "text",
-
-        text: {
-          body: message,
-        },
-      }),
-    }
+  console.log(
+    "Sending quote WhatsApp notification..."
   );
 
 
-  const data = await response.json();
+  const controller =
+    new AbortController();
+
+  const timeout =
+    setTimeout(() => {
+      controller.abort();
+    }, 10000);
 
 
-  if (!response.ok) {
-    console.error(
-      "WhatsApp API error:",
+  try {
+
+    const response =
+      await fetch(
+        `https://graph.facebook.com/v23.0/${phoneNumberId}/messages`,
+        {
+
+          method: "POST",
+
+          headers: {
+
+            Authorization:
+              `Bearer ${accessToken}`,
+
+            "Content-Type":
+              "application/json",
+
+          },
+
+          body: JSON.stringify({
+
+            messaging_product:
+              "whatsapp",
+
+            to:
+              receiverNumber,
+
+            type:
+              "text",
+
+            text: {
+              body:
+                message,
+            },
+
+          }),
+
+          signal:
+            controller.signal,
+
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if (!response.ok) {
+
+      console.error(
+        "WhatsApp API error:",
+        data
+      );
+
+      throw new Error(
+        data?.error?.message ||
+        "WhatsApp message failed."
+      );
+
+    }
+
+
+    console.log(
+      "Quote WhatsApp message sent successfully:",
       data
     );
 
-    throw new Error(
-      data?.error?.message ||
-        "WhatsApp message failed."
-    );
+
+    return data;
+
+
+  } catch (error) {
+
+    if (
+      error.name === "AbortError"
+    ) {
+
+      throw new Error(
+        "WhatsApp service timed out."
+      );
+
+    }
+
+    throw error;
+
+  } finally {
+
+    clearTimeout(timeout);
+
   }
 
-
-  console.log(
-    "WhatsApp message sent successfully:",
-    data
-  );
-
-
-  return data;
 };
 
 
@@ -153,6 +488,7 @@ ${requirement}`;
 // ==========================================
 
 const createQuote = async (req, res) => {
+
   try {
 
     const {
@@ -177,11 +513,16 @@ const createQuote = async (req, res) => {
       !product ||
       !requirement
     ) {
+
       return res.status(400).json({
+
         success: false,
+
         message:
           "Please fill all required fields.",
+
       });
+
     }
 
 
@@ -189,182 +530,124 @@ const createQuote = async (req, res) => {
     // SAVE TO MONGODB
     // ======================================
 
-    const quote = await Quote.create({
-      fullName,
-      companyName,
-      email,
-      phone,
-      product,
-      quantity,
-      requiredBy,
-      requirement,
-    });
+    const quote =
+      await Quote.create({
+
+        fullName,
+        companyName,
+        email,
+        phone,
+        product,
+        quantity,
+        requiredBy,
+        requirement,
+
+      });
 
 
     // ======================================
     // SEND EMAIL
     // ======================================
 
-    console.log(
-      "Sending quote email to:",
-      process.env.QUOTE_RECEIVER
-    );
+    let emailResult = null;
 
 
-    await transporter.sendMail({
+    try {
 
-      from: process.env.EMAIL_USER,
+      emailResult =
+        await sendQuoteEmail({
 
-      to: process.env.EMAIL_USER,
+          fullName,
+          companyName,
+          email,
+          phone,
+          product,
+          quantity,
+          requiredBy,
+          requirement,
 
-      subject:
-        `New Quote Request - ${product}`,
+        });
 
-      html: `
-        <div style="
-          font-family: Arial, sans-serif;
-          max-width: 650px;
-          margin: auto;
-        ">
+    } catch (emailError) {
 
-          <div style="
-            background: #07192E;
-            color: white;
-            padding: 25px;
-          ">
+      console.error(
+        "Quote email failed:",
+        emailError.message
+      );
 
-            <h2 style="margin: 0;">
-              New Quote Request
-            </h2>
+      return res.status(500).json({
 
-            <p style="
-              margin: 8px 0 0;
-              color: #67e8f9;
-            ">
-              VS Enterprises Website
-            </p>
+        success: false,
 
-          </div>
+        message:
+          "Your quote request was saved, but the email notification could not be sent. Please try again.",
 
+        error:
+          emailError.message,
 
-          <div style="
-            padding: 25px;
-            border: 1px solid #e5e7eb;
-          ">
+        quote,
 
-            <h3 style="color: #07192E;">
-              Customer Details
-            </h3>
+      });
 
-            <p>
-              <strong>Name:</strong>
-              ${fullName}
-            </p>
-
-            <p>
-              <strong>Company:</strong>
-              ${companyName || "Not provided"}
-            </p>
-
-            <p>
-              <strong>Email:</strong>
-              ${email}
-            </p>
-
-            <p>
-              <strong>Phone:</strong>
-              ${phone || "Not provided"}
-            </p>
-
-
-            <hr style="
-              border: 0;
-              border-top: 1px solid #e5e7eb;
-              margin: 25px 0;
-            " />
-
-
-            <h3 style="color: #07192E;">
-              Requirement Details
-            </h3>
-
-            <p>
-              <strong>Product:</strong>
-              ${product}
-            </p>
-
-            <p>
-              <strong>Quantity:</strong>
-              ${quantity || "Not provided"}
-            </p>
-
-            <p>
-              <strong>Required By:</strong>
-              ${requiredBy || "Not specified"}
-            </p>
-
-            <p>
-              <strong>Requirement:</strong>
-            </p>
-
-            <div style="
-              background: #f8fafc;
-              padding: 15px;
-              border: 1px solid #e5e7eb;
-            ">
-              ${requirement}
-            </div>
-
-
-            <p style="
-              margin-top: 25px;
-              color: #64748b;
-              font-size: 13px;
-            ">
-              This enquiry was submitted through the
-              VS Enterprises website.
-            </p>
-
-          </div>
-
-        </div>
-      `,
-    });
+    }
 
 
     // ======================================
     // SEND WHATSAPP
     // ======================================
 
-    console.log(
-      "Sending quote WhatsApp notification..."
-    );
+    let whatsappResult = null;
 
 
-    await sendWhatsAppMessage({
-      fullName,
-      companyName,
-      email,
-      phone,
-      product,
-      quantity,
-      requiredBy,
-      requirement,
-    });
+    try {
+
+      whatsappResult =
+        await sendWhatsAppMessage({
+
+          fullName,
+          companyName,
+          email,
+          phone,
+          product,
+          quantity,
+          requiredBy,
+          requirement,
+
+        });
+
+    } catch (whatsappError) {
+
+      console.error(
+        "Quote WhatsApp notification failed:",
+        whatsappError.message
+      );
+
+      // Email already succeeded.
+      // WhatsApp failure should NOT
+      // make the form hang/fail.
+
+    }
 
 
     // ======================================
     // SUCCESS
     // ======================================
 
-    res.status(201).json({
+    return res.status(201).json({
 
       success: true,
 
       message:
-        "Quote request submitted successfully. Email and WhatsApp notifications sent.",
+        "Quote request submitted successfully. We will get back to you soon.",
+
+      emailSent:
+        !!emailResult,
+
+      whatsappSent:
+        !!whatsappResult,
 
       quote,
+
     });
 
 
@@ -376,17 +659,20 @@ const createQuote = async (req, res) => {
     );
 
 
-    res.status(500).json({
+    return res.status(500).json({
 
       success: false,
 
       message:
-        "Something went wrong.",
+        "Something went wrong. Please try again.",
 
       error:
         error.message,
+
     });
+
   }
+
 };
 
 
